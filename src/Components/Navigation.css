@@ -1,0 +1,10 @@
+.navbar-brand {
+    font-size: 3em;
+}
+
+.nav-link {
+    background-color: darkgray;
+    color: black;
+    margin: 10px;
+    border-radius: 10px;
+}
