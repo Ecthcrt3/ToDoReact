@@ -9,7 +9,7 @@ import Profile from './Auth/Profile'
 export default function Navigation() {
   const { currentUser } = useAuth()
   return (
-  <div className='bg-dark text-center p-1 text-light'>
+  <div className='bg-dark text-center p-1 text-light navContainer'>
     <Row className='navRow'>
       <Col md={{span:1}}>
         <Link to='/' className='btn btn-dark'>React ToDo</Link>
