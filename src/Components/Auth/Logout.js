@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../Contexts/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import Profile from './Profile'
 
 export default function Logout() {
     const {logout} = useAuth()

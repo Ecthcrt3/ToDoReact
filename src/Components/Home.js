@@ -29,7 +29,7 @@ export default function Home() {
 
                 <Col md={{span: 5}}>
                     <p className='textContainer rounded p-2'>
-                    My name is Gene Cathcart, I am a Web developer trained by Centriq Training and an I.T. support technician. I am trained in using HTML, CSS, JavaScript, C#, Java, SQL, MVC, and React.  I am a passionate developer that loves problem solving and creating solutions to tough coding problems.  If you would like to check out more of my work make sure to check out my portfolio site: <a href='http://www.GeneCathcart.com' target='_blank' rel='norefferer'>GeneCathcart.com</a> 
+                    My name is Gene Cathcart, I am a Web developer trained by Centriq Training and an I.T. support technician. I am trained in using HTML, CSS, JavaScript, C#, Java, SQL, MVC, and React.  I am a passionate developer that loves problem solving and creating solutions to tough coding problems.  If you would like to check out more of my work make sure to check out my portfolio site: <a href='http://www.GeneCathcart.com' target='_blank' rel='noreferrer'>GeneCathcart.com</a> 
                     </p>
                 </Col>
             </Row>
