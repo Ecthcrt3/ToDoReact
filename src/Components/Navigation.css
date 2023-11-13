@@ -9,6 +9,13 @@
     border-radius: 10px;
 }
 
+.navContainer{
+    position:absolute;
+    top:0;
+    left: 0;
+    right: 0;
+}
+
 @media only screen and (max-width: 572px) {
     .navRow > * {
         width: 33%;
