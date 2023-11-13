@@ -23,24 +23,24 @@ export default function Categories() {
 
   return (
     <section className="categories">
-    <article className="bg-info p-5">
-      <h1 className="text-center">Categories Dashboard</h1>
-    </article>
-    {currentUser.email === process.env.REACT_APP_ADMIN_EMAIL &&
-        <div className="bg-dark p-2 mb-3 text-center">
-          {showCreate ? 
+      <article className="bg-dark text-light p-3 mt-4 rounded text-center">
+        <h1 className="text-center">Categories Dashboard</h1>
+        {currentUser.email === process.env.REACT_APP_ADMIN_EMAIL &&
             <>
-              <button onClick={() => setShowCreate(false)} className="btn btn-warning">
-                Cancel
+            {showCreate ? 
+              <>
+                <button onClick={() => setShowCreate(false)} className="btn btn-outline-light">
+                  Cancel
+                </button>
+                <CatCreate getCategories={getCategories} setShowCreate={setShowCreate} />
+              </> :
+              <button onClick={() => setShowCreate(true)} className="btn btn-outline-light">
+                Create Category
               </button>
-              <CatCreate getCategories={getCategories} setShowCreate={setShowCreate} />
-            </> :
-            <button onClick={() => setShowCreate(true)} className="btn btn-info">
-              Create Category
-            </button>
-          }
-        </div>
-      }
+            }
+            </>
+        }
+        </article>
     <Container className="p-2">
       <table className="table bg-info table-dark my-3 text-center">
         <thead className="table-secondary text-uppercase">

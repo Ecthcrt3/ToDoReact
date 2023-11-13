@@ -1,29 +1,40 @@
 import React from 'react'
-import { Nav, Navbar} from 'react-bootstrap'
+import { Nav, Navbar, Row, Col} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import './Navigation.css'
 import { useAuth } from '../Contexts/AuthContext'
-import Logout from './Auth/Logout'
+import Profile from './Auth/Profile'
+
 
 export default function Navigation() {
   const { currentUser } = useAuth()
   return (
   <div className='bg-dark text-center p-1 text-light'>
-    <Navbar.Brand href='/'>To Do List</Navbar.Brand>
-    <Navbar bg='dark' variant='dark' expand='sm'>
-      <Navbar.Toggle/>
-      <Navbar.Collapse className='justify-content-center'>
-        <Nav>
-          <Link to='/ToDos' className='nav-link'>To Do List</Link>
-          <Link to='/Categories' className='nav-link'>Categories</Link>
-        </Nav>
+    <Row className='navRow'>
+      <Col md={{span:1}}>
+        <Link to='/' className='btn btn-dark'>React ToDo</Link>
+      </Col>
 
-      </Navbar.Collapse>
-    </Navbar>
-          {currentUser
-            ? <Logout/>
-            : <Link to='/Login' className='nav-link'>Login</Link>
-          }
+      <Col md={{span: 2, offset: 4}}>
+        <Navbar bg='dark' variant='dark' expand='sm' className='justify-content-center'>
+            <Navbar.Toggle/>
+            <Navbar.Collapse className='justify-content-center'>
+              <Nav>
+                <Link to='/ToDos' className='nav-link'>To Do List</Link>
+                <Link to='/Categories' className='nav-link'>Categories</Link>
+            </Nav>   
+            </Navbar.Collapse>
+          </Navbar>
+      </Col>
+
+      <Col md={{span:1, offset:4}}>
+        {currentUser
+          ? <Profile/>
+          : <Link to='/login' className='btn btn-dark'>Login</Link>
+        }
+      </Col>
+    </Row>
+
   </div>
   )
 }

@@ -5,12 +5,14 @@ import SingleToDo from './SingleToDo';
 import FilterCat from './FilterCat';
 import { useAuth } from '../../Contexts/AuthContext'
 import ToDoCreate from './ToDoCreate'
+import Form from 'react-bootstrap/Form';
 
 
 export default function ToDos() {
   const [toDos, setToDos] = useState([]);
   const { currentUser } = useAuth()
   const [showCreate, setShowCreate] = useState(false)
+const [showFinished, setShowFinished] = useState(false);
 
   const [filter, setFilter] = useState(0);
 
@@ -26,14 +28,12 @@ export default function ToDos() {
 
   return (
     <section className="toDos">
-    <article className="bg-info p-5">
+    <article className="bg-dark text-light mt-4 p-3 rounded text-center">
         <h1 className="text-center">To Do List</h1>
-    </article>
-
-    {currentUser.email === process.env.REACT_APP_ADMIN_EMAIL && 
-        <div className="bg-dark p-2 mb-3 text-center">
-          <button className="btn btn-info" onClick={() => setShowCreate(!showCreate)}>
-            {!showCreate ? 'Create New Resource' : 'Cancel'}
+        {currentUser.email === process.env.REACT_APP_ADMIN_EMAIL && 
+        <>
+          <button className="btn btn-outline-light m-2" onClick={() => setShowCreate(!showCreate)}>
+            {!showCreate ? 'Create New Task' : 'Cancel'}
           </button>
           <div className="createContainer">
             {showCreate &&
@@ -41,13 +41,24 @@ export default function ToDos() {
               <ToDoCreate getToDos={getToDos} setShowCreate={setShowCreate} />
             }
           </div>
-        </div>}
+        </>}
+    </article>
 
 
-    <FilterCat setFilter={setFilter} />
+    <div className="filterContainer rounded bg-dark">
+      <FilterCat setFilter={setFilter} />
+      <Form>
+        <Form.Check
+          type="switch"
+          id="custom-switch"
+          label='Show Finished Tasks?'
+          onClick={() => {setShowFinished(!showFinished)}}
+          />
+      </Form>
+    </div>
     <Container>
-      <table className="table bg-info table-dark">
-        <thead className="table-secondary text-uppercase">
+      <table className="table bg-info table-dark m-3">
+        <thead className="table-secondary text-uppercase text-center">
           <tr>
             <th>Id</th>
             <th>Name</th>
@@ -55,11 +66,11 @@ export default function ToDos() {
             <th>Finished?</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='text-center'>
           {filter === 0 ? 
-          toDos.map(t => <SingleToDo key={t.toDoId} todo={t} getToDos={getToDos}/>) :
-          toDos.filter(t => t.categoryId === filter).map(t => <SingleToDo key={t.toDoId} todo={t} getToDos={getToDos}  />)
-        }
+          toDos.filter(t => t.done === showFinished).map(t => <SingleToDo key={t.toDoId} todo={t} getToDos={getToDos}/>) :
+          toDos.filter(t => t.categoryId === filter, t => t.done === showFinished).map(t => <SingleToDo key={t.toDoId} todo={t} getToDos={getToDos}  />)
+          }
           {filter !== 0 && toDos.filter(t => t.categoryId === filter).length === 0 &&
           <h2 className="alert alert-warning text-dark">
               There are no results for this category

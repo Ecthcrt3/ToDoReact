@@ -17,13 +17,15 @@ function App() {
     <AuthProvider>
       <Router>
         <Navigation />
-        <Routes>
-          <Route path='/Categories' element={<ProtectedRoute><Categories/></ProtectedRoute>}/>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/ToDos' element={<ProtectedRoute><ToDos/></ProtectedRoute>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='*' element={<PageNotFound/>}/>
-        </Routes>
+          <div className="pageContainer">
+            <Routes>
+                <Route path='/Categories' element={<ProtectedRoute><Categories/></ProtectedRoute>}/>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/ToDos' element={<ProtectedRoute><ToDos/></ProtectedRoute>}/>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='*' element={<PageNotFound/>}/>
+            </Routes>
+          </div>
         <Footer/>
       </Router>
     </AuthProvider>

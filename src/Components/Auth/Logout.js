@@ -12,9 +12,10 @@ export default function Logout() {
         navigate('/')
     }
   return (
-    <div className='logout text-center p-3 bg-dark text-white'>
-        <Profile/>
+    <div className="text-center">
+
         <button className="btn btn-info" onClick={() => handleAuth()}>Logout</button>
     </div>
+
   )
 }

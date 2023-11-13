@@ -22,6 +22,18 @@ export default function ToDoForm(props) {
                 props.getToDos()
             })
         }
+        else {
+            const todoToEdit = {
+                toDoId: props.todo.toDoId,
+                name: values.name,
+                categoryId: values.categoryId,
+                done: false
+              }
+              axios.put(`http://todoapi.genecathcart.com/api/todoes/${props.todo.toDoId}`, todoToEdit).then(() => {
+                props.setShowEdit(false)
+                props.getToDos()
+              })
+            }
     }
 
   return (
@@ -58,7 +70,7 @@ export default function ToDoForm(props) {
                 
         <div className="form-group m-3">
             <button className="btn btn-success" type='submit'>
-                Submit to Api
+                Submit Task to Api
             </button>
         </div>
 

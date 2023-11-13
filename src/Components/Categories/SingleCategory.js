@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useAuth} from '../../Contexts/AuthContext'
 import axios from 'axios'
 import CategoryEdit from './CategoryEdit'
+import { FaEdit, FaTrash } from 'react-icons/fa'
 
 export default function SingleCategory(props) {
   const {categoryName, categoryDescription, categoryId} = props.category
@@ -22,7 +23,7 @@ export default function SingleCategory(props) {
       <td>{categoryDescription}</td>
       {currentUser.email === process.env.REACT_APP_ADMIN_EMAIL &&
       <td>
-        <button className="m-1 btn btn-dark" onClick={() => setShowEdit(true)}>Edit</button>
+        <button className="m-1 btn btn-dark" onClick={() => setShowEdit(true)}><FaEdit/></button>
         {showEdit && 
           <CategoryEdit
           setShowEdit={setShowEdit}
@@ -31,7 +32,7 @@ export default function SingleCategory(props) {
           category={props.category} />
         }
         <button className="m-1 btn btn-dark" onClick={() => deleteCat(categoryId)}>
-          Delete
+          <FaTrash/>
         </button>
       </td>
       }
